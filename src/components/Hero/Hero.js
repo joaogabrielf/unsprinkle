@@ -1,11 +1,23 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
+
+const devicePixelRatio = [1, 2, 3];
+const updatedSrc = devicePixelRatio.map(
+  (ratio) =>
+    `/images/hero-img${ratio > 1 ? "@" + ratio + "x" : ""}.avif ${ratio}x`
+);
 
 const Hero = () => {
   return (
     <Wrapper>
-      <HeroImage src="/images/hero-img.jpg" />
-      <Swoop src="/swoop.svg" />
+      <picture>
+        <source srcSet={updatedSrc} type='image/avif' />
+        <HeroImage
+          src='/images/hero-img.jpg'
+          alt='Beautiful cat staring at you.'
+        />
+      </picture>
+      <Swoop src='/swoop.svg' alt='' />
     </Wrapper>
   );
 };
